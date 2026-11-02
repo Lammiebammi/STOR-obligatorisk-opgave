@@ -1,0 +1,11 @@
+addReviewers: true
+addAssignees: false
+
+reviewers:
+  - Luxsuss
+  - Lammiebammi
+  - ddnoergaard
+  - QuirkyTurtle101
+  - TheOneTrueBear
+
+numberOfReviewers: 1
