@@ -15,5 +15,23 @@
         {
             return $"Id: {Id}, Title: {Title}, Artist: {Artist}, Duration: {Duration}, PublicationYear: {PublicationYear}, Genre: {Genre}";
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Record;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Id.Equals(item.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
+
     }
 }
