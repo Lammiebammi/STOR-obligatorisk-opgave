@@ -79,5 +79,66 @@ namespace Backend.Repository
             return null;
         }
 
+        public IEnumerable<Record> Search(string? title = null, string? artist = null, int? duration = null, 
+            string? publicationYear = null, string? genre = null, bool singleSearch = false, bool caseSensitive = false)
+        {
+            List<Record> tempList = _records;
+
+            if(title is not null)
+            {
+                
+                if (caseSensitive)
+                {
+                    tempList = tempList.FindAll(r => r.Title == title);
+                }
+                else
+                {
+                   tempList = tempList.FindAll(r => r.Title.ToLower() == title.ToLower());
+                }
+
+            }
+            if(artist is not null)
+            {
+                if (caseSensitive)
+                {
+                    tempList = tempList.FindAll(r => r.Artist == artist);
+                }
+                else
+                {
+                    tempList = tempList.FindAll(r => r.Artist.ToLower() == artist.ToLower());
+                }
+            }
+            if(duration is not null)
+            {
+                tempList = tempList.FindAll(r => r.Duration == duration);
+            }
+            if (publicationYear is not null)
+            {
+                if (caseSensitive)
+                {
+                    tempList = tempList.FindAll(r => r.PublicationYear == publicationYear);
+                }
+                else
+                {
+                    tempList = tempList.FindAll(r => r.PublicationYear.ToLower() == publicationYear.ToLower());
+                }
+            }
+            if (genre is not null)
+            {
+                if (caseSensitive)
+                {
+                    tempList = tempList.FindAll(r => r.Genre == genre);
+                }
+                else
+                {
+                    tempList = tempList.FindAll(r => r.Genre.ToLower() == genre.ToLower());
+                }
+            }
+            if (singleSearch)
+            {
+                tempList = tempList.FindAll(r => r == tempList.First()); //ew refactor
+            }
+            return tempList;
+        }
     }
 }
