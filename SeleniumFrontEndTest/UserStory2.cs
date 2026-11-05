@@ -19,15 +19,12 @@ namespace SeleniumFrontEndTest
         {
             string searchTitle = "Billie Jean";
             _driver.Navigate().GoToUrl(URL);
-            IWebElement dropDownButton = _driver.FindElement(By.Id("drop-down-button"));
-            dropDownButton.Click();
-            IWebElement dropDownElement = _driver.FindElement(By.Id("drop-down-title"));
-            dropDownElement.Click();
-            IWebElement searchField = _driver.FindElement(By.Id("search-bar"));
+     
+            IWebElement searchField = _driver.FindElement(By.Id("title-search-bar"));
             searchField.SendKeys(searchTitle);
             IWebElement searchButton = _driver.FindElement(By.Id("search-button"));
             searchButton.Click();
-            IWebElement searchResult = _driver.FindElement(By.Id("table-data-title"));
+            IWebElement searchResult = _driver.FindElement(By.Id("2-billie-jean")).FindElement(By.ClassName("title"));
 
             string actualOutput = searchResult.Text;
 
@@ -41,19 +38,16 @@ namespace SeleniumFrontEndTest
         {
             string genreName = "pop";
             _driver.Navigate().GoToUrl(URL);
-            IWebElement dropDownButton = _driver.FindElement(By.Id("drop-down-button"));
-            dropDownButton.Click();
-            IWebElement dropDownElement = _driver.FindElement(By.Id("drop-down-genre"));
-            dropDownElement.Click();
-            IWebElement searchField = _driver.FindElement(By.Id("search-bar"));
+            
+            IWebElement searchField = _driver.FindElement(By.Id("genre-search-bar"));
             searchField.SendKeys(genreName);
             IWebElement searchButton = _driver.FindElement(By.Id("search-button"));
             searchButton.Click();
-            IWebElement searchResult = _driver.FindElement(By.Id("table-data-row"));
+            IEnumerable<IWebElement> searchResult = _driver.FindElements(By.ClassName("table-row"));
 
-            bool isDisplayed = searchResult.Displayed;
+            int count = searchResult.Count();
 
-            Assert.True(isDisplayed);
+            Assert.Equal(3, count);
         }
 
         //Search by publication year and verify only records from that year appear.
