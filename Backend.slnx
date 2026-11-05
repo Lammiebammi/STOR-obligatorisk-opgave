@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Backend/Backend.csproj" />
   <Project Path="BackendTest/BackendTest.csproj" Id="7edbd833-ad24-4de4-a178-688e814b574d" />
+  <Project Path="SeleniumFrontEndTest/SeleniumFrontEndTest.csproj" Id="e0ffc85e-cec6-4648-bf6e-9fe4a6cbee47" />
 </Solution>
