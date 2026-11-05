@@ -34,6 +34,31 @@ namespace SeleniumFrontEndTest
             Assert.Equal(searchTitle, actualOutput);
         }
 
+
+        //Type a known genre and verify all of that artist’s records appear.
+        [Fact]
+        public void MultipleRecordsSearch()
+        {
+            string genreName = "pop";
+            _driver.Navigate().GoToUrl(URL);
+            IWebElement dropDownButton = _driver.FindElement(By.Id("drop-down-button"));
+            dropDownButton.Click();
+            IWebElement dropDownElement = _driver.FindElement(By.Id("drop-down-genre"));
+            dropDownElement.Click();
+            IWebElement searchField = _driver.FindElement(By.Id("search-bar"));
+            searchField.SendKeys(genreName);
+            IWebElement searchButton = _driver.FindElement(By.Id("search-button"));
+            searchButton.Click();
+            IWebElement searchResult = _driver.FindElement(By.Id("table-data-row"));
+
+            bool isDisplayed = searchResult.Displayed;
+
+            Assert.True(isDisplayed);
+        }
+
+        //Search by publication year and verify only records from that year appear.
+        [Fact]
+
         public void Dispose()
         {
             _driver.Dispose();
