@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "https://frontend-ten-liart-ijufbzpsx4.vercel.app/").AllowAnyHeader();
+        policy.WithOrigins("http://localhost:5173", "https://frontend-ten-liart-ijufbzpsx4.vercel.app").AllowAnyHeader();
     });
 });
 
